@@ -1,4 +1,3 @@
-import { LoginAdm } from "../repository/admrepository.js";
 import { Login } from "../repository/clienterepository.js";
 import { Router } from "express";
 
@@ -16,21 +15,6 @@ endpoints.post('/cliente/login', async (req, resp) => {
     };
     
 })
-
-endpoints.post('/adm/login', async (req, resp) => {
-    try{
-        let adm = req.body
-        let r = await LoginAdm(adm)
-        resp.send(r)
-    }
-
-    catch (err){
-        resp.status(500).send({ erro: 'Ocorreu um erro!'})
-    };
-})
-
-
-
 
 export default endpoints;
 
