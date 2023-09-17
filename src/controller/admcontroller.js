@@ -1,5 +1,5 @@
 import { LoginAdm } from "../repository/admrepository.js";
-
+import { Router } from "express";
 
 const endpoints = Router();
 
