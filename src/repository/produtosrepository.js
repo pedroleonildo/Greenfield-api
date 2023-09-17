@@ -75,3 +75,12 @@ export async function Editarproduto(id, produtos){
     let linha = info.affectedRows;
     return linha
 }
+
+export async function deletarproduto(id){
+    let sql = `delete from tb_produto where id_produto = ?`
+
+    let [info] = await conexao.query(sql, [id])
+
+    let linha = info.affectedRows;
+    return linha;
+}
