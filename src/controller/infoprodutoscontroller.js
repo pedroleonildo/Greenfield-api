@@ -16,8 +16,8 @@ endpoints.get('/info', async (req, resp) => {
 
 endpoints.post('/info', async (req, resp) => {
     try{
-        let info = req.body;
-        let r = await Cadastrainfo(info)
+        let infor = req.body;
+        let r = await Cadastrainfo(infor)
         resp.send(r)
     }
 

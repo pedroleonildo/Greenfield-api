@@ -7,17 +7,17 @@ export async function Listarinfo(){
     return resp;
 }
 
-export async function Cadastrainfo(info){
+export async function Cadastrainfo(infor){
     let sql = `insert into tb_informacoes_produto(ds_material, ds_dimencoes, ds_extra)
     values(?, ?, ?)`
 
-    let [infor] = await conexao.query(sql, [
+    let [info] = await conexao.query(sql, [
         infor.material,
         infor.dimencoes,
         infor.extra
     ])
 
-    infor.id = infor.insertID
+    infor.id = info.insertID
 
     return infor;
 

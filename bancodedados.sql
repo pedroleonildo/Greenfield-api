@@ -40,6 +40,22 @@ ds_dimencoes varchar(100),
 ds_extra varchar(1000) 
 );
 
+create table tb_produto (
+id_produto int primary key auto_increment,
+nm_produto varchar(100),
+ds_fabricante varchar(100),
+vl_preco int,
+nr_garantia int,
+ds_produto varchar(1000),
+id_categoria int,
+foreign key (id_categoria) references tb_categoria (id_categoria),
+vl_preco_promocao decimal,
+bt_promocao boolean,
+qtd_estoque int,
+id_informacoes_produto int,
+foreign key (id_informacoes_produto) references tb_informacoes_produto (id_informacoes_produto)
+);
+
 create table tb_endereço(
     id_endereco int primary key auto_increment,
 	ds_logradouro varchar(100),
