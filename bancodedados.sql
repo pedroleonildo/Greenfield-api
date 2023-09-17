@@ -39,3 +39,29 @@ ds_material varchar(100),
 ds_dimencoes varchar(100),
 ds_extra varchar(1000) 
 );
+
+create table tb_endereço(
+    id_endereco int primary key auto_increment,
+	ds_logradouro varchar(100),
+	nr_numero int,
+	ds_complemento varchar(100),
+	nm_referencia varchar(100),
+	ds_bairro varchar(100),
+	ds_cidade varchar(100),
+	ds_uf varchar(100)
+);
+
+
+
+create table tb_pedido(
+id_pedido int primary key auto_increment,
+ds_nota_fiscal varchar(100),
+tp_formas_pagamento varchar(100),
+qtd_parcelas int,
+dt_pedido datetime,
+ds_situacao varchar(100),
+id_cliente int,
+id_endereço int,
+foreign key (id_cliente) references tb_cliente (id_cliente),
+foreign key (id_endereço) references tb_endereço (id_endereco)
+);
