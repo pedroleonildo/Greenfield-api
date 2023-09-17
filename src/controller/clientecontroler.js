@@ -3,7 +3,7 @@ import { Router } from "express";
 
 const endpoints = Router();
 
-endpoints.post('cliente/login', async (req, resp) => {
+endpoints.post('/cliente', async (req, resp) => {
     try{
         let cliente = req.body;
         let r = await Login(cliente)

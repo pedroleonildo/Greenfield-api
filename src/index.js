@@ -1,6 +1,6 @@
 import 'dotenv/config'
 import cors from 'cors'
-import express from 'express'
+import express, { json } from 'express'
 
 import clientecontroler from './controller/clientecontroler.js'
 
