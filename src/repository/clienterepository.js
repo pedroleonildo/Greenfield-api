@@ -5,11 +5,13 @@ export async function Login(cliente){
     values(?, ?, ?, ?, ?);`;
 
     let [info] = await conexao.query(comando, [
-        cliente.email,
+
         cliente.nome,
-        cliente.telefone,
+        cliente.email,
         cliente.cpf,
-        cliente.senha
+        cliente.senha,
+        cliente.telefone,
+
     ])
 
     cliente.id = info.insertId
