@@ -36,7 +36,7 @@ nm_categoria varchar(100)
 create table tb_informacoes_produto(
 id_informacoes_produto int primary key auto_increment,
 ds_material varchar(100),
-ds_dimencoes varchar(100),
+ds_dimensoes varchar(100),
 ds_extra varchar(1000) 
 );
 

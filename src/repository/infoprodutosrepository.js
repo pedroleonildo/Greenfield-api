@@ -8,12 +8,12 @@ export async function Listarinfo(){
 }
 
 export async function Cadastrainfo(infor){
-    let sql = `insert into tb_informacoes_produto(ds_material, ds_dimencoes, ds_extra)
+    let sql = `insert into tb_informacoes_produto(ds_material, ds_dimensoes, ds_extra)
     values(?, ?, ?)`
 
     let [info] = await conexao.query(sql, [
         infor.material,
-        infor.dimencoes,
+        infor.dimensoes,
         infor.extra
     ])
 
