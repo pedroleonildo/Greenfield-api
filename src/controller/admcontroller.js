@@ -1,20 +1,16 @@
-import { LoginAdm } from "../repository/admrepository.js";
+
+import { Verificarlogin } from "../repository/admrepository.js";
 import { Router } from "express";
 
 const endpoints = Router();
 
-endpoints.post('/adm/login', async (req, resp) => {
-    try{
-        let adm = req.body
-        let r = await LoginAdm(adm)
-        resp.send(r)
-    }
-
-    catch (err){
-        resp.status(500).send({ erro: 'Ocorreu um erro!'})
-    };
-})
-
-
+endpoints.get('/loginadm', async (req, resp) => {
+  try {
+    const credencial = await Verificarlogin();
+    resp.json(credencial);
+  } catch (err) {
+    resp.status(500).json({ error: "Internal server error" });
+  }
+});
 
 export default endpoints;
