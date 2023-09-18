@@ -1,18 +1,7 @@
 import { conexao } from "./connection.js";
 
 export async function Listartodos(){
-    let sql = `select nm_produto,
-    ds_fabricante,
-    vl_preco,
-    nr_garantia,
-    ds_produto,
-    vl_preco_promocao,
-    bt_promocao,
-    qtd_estoque,
-    nm_categoria,
-    ds_material, 
-    ds_dimencoes, 
-    ds_extra
+    let sql = `select *
     from tb_produto
     inner join tb_categoria on tb_categoria.id_categoria = tb_produto.id_categoria
     inner join tb_informacoes_produto on tb_informacoes_produto.id_informacoes_produto = tb_produto.id_informacoes_produto;`
