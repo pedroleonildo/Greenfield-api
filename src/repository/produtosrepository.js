@@ -17,7 +17,7 @@ export async function Listartodos(){
     inner join tb_categoria on tb_categoria.id_categoria = tb_produto.id_categoria
     inner join tb_informacoes_produto on tb_informacoes_produto.id_informacoes_produto = tb_produto.id_informacoes_produto;`
 
-    let resp = await conexao.query(sql)
+    let [resp] = await conexao.query(sql)
 
     return resp
 }

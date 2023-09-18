@@ -2,7 +2,7 @@ import { conexao } from "./connection.js";
 
 export async function Listarinfo(){
     let sql = 'select * from tb_informacoes_produto'
-    let resp = await conexao.query(sql)
+    let [resp] = await conexao.query(sql)
 
     return resp;
 }

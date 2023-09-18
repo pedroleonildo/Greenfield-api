@@ -10,7 +10,7 @@ endpoints.get('/produtos', async (req, resp) => {
     }
     catch (err){
         resp.status(500).send({ erro: 'Ocorreu um erro!'})
-    }
+    };
 })
 
 endpoints.post('/produtos', async (req, resp) => {
