@@ -1,17 +1,17 @@
 import { Router } from "express";
-import { cadastro, verificarLoginc } from "../repository/clienterepository";
+import { cadastro, verificarLoginc } from "../repository/clienterepository.js";
 
 
 const endpoint = Router();
 
 
-endpoint.post('/inserircadastro', async (req, resp) => {
+endpoint.post('/cliente/login', async (req, resp) => {
     try {
         const cliente = await req.body;
 
         //validaçoes abaixo
 
-        if(!cliente.cliente)
+        if(!cliente.nome)
             throw new Error('⚠ cliente obrigatório')
 
         if(!cliente.email)
@@ -21,12 +21,12 @@ endpoint.post('/inserircadastro', async (req, resp) => {
             throw new Error('⚠ telefone obrigatorio')
 
         if(!cliente.cpf)
-            throw new Error('⚠ telefone obrigatorio')
+            throw new Error('⚠ cpf obrigatorio')
 
         if(!cliente.senha)
-            throw new Error('⚠ telefone obrigatorio')
+            throw new Error('⚠ senha obrigatorio')
 
-        const dados = await c(cliente)
+        const dados = await cadastro(cliente)
         resp.send(dados)
 
     } catch (err) {

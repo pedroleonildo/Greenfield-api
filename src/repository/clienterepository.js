@@ -1,6 +1,6 @@
-import { conexao } from "./connection.js";
+import conexao from './connection.js';
 
-export async function cadastro(cliente){
+ export async function cadastro(cliente){
     let comando = `insert into tb_cliente(nm_cliente, ds_email, ds_cpf, ds_senha, ds_telefone)
     values(?, ?, ?, ?, ?);`;
 
@@ -21,7 +21,7 @@ export async function cadastro(cliente){
 }
 
 
-import conexao from "./connection.js";
+
 
 export async function verificarLoginc() {
 

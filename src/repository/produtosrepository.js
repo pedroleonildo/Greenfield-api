@@ -1,4 +1,4 @@
-import { conexao } from "./connection.js";
+import conexao from "./connection.js";
 
 export async function Listartodos(){
     let sql = `select *

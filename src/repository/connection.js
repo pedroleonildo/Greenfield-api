@@ -9,7 +9,7 @@ const conexao = await mysql.createConnection({
 
 console.log('Banco de dados conectado')
 
-export {conexao};
+export default conexao;
 
 
 

@@ -1,4 +1,4 @@
-import { conexao } from "./connection.js";
+import conexao from "./connection.js";
 
 export async function Listarinfo(){
     let sql = 'select * from tb_informacoes_produto'
