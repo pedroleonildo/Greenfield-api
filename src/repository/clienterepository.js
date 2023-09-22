@@ -50,5 +50,5 @@ export async function inserirReclamacao(reclamacao){
     reclamacao.id = info.insertId;
 
     return reclamacao;
-}
+};
 
