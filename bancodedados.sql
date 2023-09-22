@@ -82,3 +82,19 @@ id_endereço int,
 foreign key (id_cliente) references tb_cliente (id_cliente),
 foreign key (id_endereço) references tb_endereço (id_endereco)
 );
+
+create table tb_item_pedido(
+id_item_pedido int primary key auto_increment,
+qtd_item int,
+id_pedido int,
+id_produto int,
+foreign key(id_pedido) references tb_pedido (id_pedido),
+foreign key (id_produto) references tb_produto (id_produto)
+);
+
+create table tb_img(
+id_img int primary key auto_increment,
+ds_img varchar(1000),
+id_produto int,
+foreign key (id_produto) references tb_produto (id_produto)
+)
