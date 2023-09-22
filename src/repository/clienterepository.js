@@ -33,3 +33,17 @@ export async function verificarLoginc() {
     resposta[0]
 }
 
+export async function inserirReclamacao(reclamacao){
+    let comando = `
+    insert into tb_reclamacao (ds_reclamacao)
+                        value(?)`
+
+    let [info] = await conexao.query(comando, [
+        reclamacao.textoreclamacao
+    ]);
+
+    reclamacao.id = info.insertId;
+
+    return reclamacao;
+}
+

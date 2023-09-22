@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { cadastro, verificarLoginc } from "../repository/clienterepository.js";
+import { cadastro, inserirReclamacao, verificarLoginc } from "../repository/clienterepository.js";
 
 
 const endpoint = Router();
@@ -47,6 +47,25 @@ endpoint.post('/cliente/login', async (req, resp) => {
         });
         }
     });
+
+    endpoint.post('/reclamacao', async (req, resp) =>{
+
+        try{
+            let reclamacao = req.body;
+            let r = await inserirReclamacao(reclamacao)
+            resp.send(r)
+        }
+
+        catch (err) {
+            resp.status(400).send({
+                erro: err.message
+            });
+            }
+        
+    })
+
+    
+
   
   export default endpoint;
 
