@@ -1,11 +1,12 @@
 import { Router } from "express";
-import { cadastro, verificarLoginc } from "../repository/clienterepository.js";
+import { Loginc, cadastro,  } from "../repository/clienterepository.js";
+
 
 
 const endpoint = Router();
 
 
-endpoint.post('/cliente/login', async (req, resp) => {
+endpoint.post('/cliente/cadastro', async (req, resp) => {
     try {
         const cliente = await req.body;
 
@@ -37,16 +38,22 @@ endpoint.post('/cliente/login', async (req, resp) => {
     
 })
 
-    endpoint.get('/login', async (req, resp) => {
-        try {
-        const credencial = await verificarLoginc();
-        resp.json(credencial);
-        } catch (err) {
-        resp.status(400).send({
-            erro: err.message
-        });
-        }
-    });
+  endpoint.post('/usuario/login', async (req, resp) => {
+    try {
+      let email = req.body.email;
+      let senha = req.body.senha;
+  
+      let linha = await Loginc(email, senha);
+      if (linha == undefined) {
+        throw new Error('Credenciais inválidas!');
+      }
+  
+      resp.send(linha);
+      
+    } catch (err) {
+      resp.status(500).send({ erro: err.message});
+    }
+  })
   
   export default endpoint;
 
