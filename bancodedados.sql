@@ -1,3 +1,5 @@
+
+
 use greenfield;
 
 create table tb_cartao(
@@ -10,6 +12,8 @@ ds_cpf_titular_cartao varchar(100),
 dt_nascimento date
 );
 
+
+
 create table tb_cliente(
 id_cliente int primary key auto_increment,
 nm_cliente varchar(100),
@@ -17,10 +21,19 @@ ds_email varchar(100),
 ds_cpf varchar(100),
 ds_senha varchar(100),
 ds_telefone varchar(100),
-ds_reclamacao varchar(100),
+id_reclamacao int,
 id_cartao int,
+foreign key (id_reclamacao) references tb_reclamacao(id_reclamacao),
 foreign key (id_cartao) references tb_cartao (id_cartao)
 );
+
+create table tb_reclamacao(
+id_reclamacao int primary key auto_increment,
+ds_reclamacao varchar(100)
+);
+
+insert into tb_reclamacao (ds_reclamacao)
+					value(?);
 
 create table tb_admin(
 id_admin int primary key auto_increment,
@@ -57,6 +70,8 @@ id_informacoes_produto int,
 foreign key (id_informacoes_produto) references tb_informacoes_produto (id_informacoes_produto)
 );
 
+
+
 create table tb_endereço(
     id_endereco int primary key auto_increment,
 	ds_logradouro varchar(100),
@@ -67,6 +82,7 @@ create table tb_endereço(
 	ds_cidade varchar(100),
 	ds_uf varchar(100)
 );
+
 
 
 
@@ -82,3 +98,20 @@ id_endereço int,
 foreign key (id_cliente) references tb_cliente (id_cliente),
 foreign key (id_endereço) references tb_endereço (id_endereco)
 );
+
+create table tb_item_pedido(
+id_item_pedido int primary key auto_increment,
+qtd_item int,
+id_pedido int,
+id_produto int,
+foreign key(id_pedido) references tb_pedido (id_pedido),
+foreign key (id_produto) references tb_produto (id_produto)
+);
+
+create table tb_img(
+id_img int primary key auto_increment,
+ds_img varchar(1000),
+id_produto int,
+foreign key (id_produto) references tb_produto (id_produto)
+)
+
