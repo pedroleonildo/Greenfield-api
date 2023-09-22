@@ -25,17 +25,15 @@ import conexao from './connection.js';
 
 export async function Loginc(email, senha) {
     let sql = `
-      select id_cliente		as id,
-             nm_cliente 	as cliente,
-             ds_email		as email
-        from tb_cliente
-       where ds_email = ?
-         and ds_senha = ?;
+    SELECT ds_email, ds_senha FROM tb_cliente WHERE ds_email = ? and ds_senha = ?;
     `
   
-    let respostas = await conexao.query(sql, [email, senha]);
+    let respostas = await conexao.query(sql, [email,senha]);
+
+    
     let linhas = respostas[0];
     let linha = linhas[0];
+    console.log(linha)
   
     return linha;
   }
