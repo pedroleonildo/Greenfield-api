@@ -24,6 +24,7 @@ foreign key (id_cartao) references tb_cartao (id_cartao)
 
 create table tb_admin(
 id_admin int primary key auto_increment,
+nm_usuario varchar(100),
 ds_email varchar(100),
 ds_senha varchar(100)
 );
