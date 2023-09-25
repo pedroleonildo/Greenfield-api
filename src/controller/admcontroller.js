@@ -1,16 +1,23 @@
 
-import { Verificarlogin } from "../repository/admrepository.js";
+import { Loginadm } from "../repository/admrepository.js";
 import { Router } from "express";
 
 const endpoints = Router();
 
-endpoints.get('/loginadm', async (req, resp) => {
+endpoints.post('/adm/login', async (req, resp) => {
   try {
-    const credencial = await Verificarlogin();
-    resp.json(credencial);
-  } catch (err) {
-    resp.status(500).json({ error: "Internal server error" });
-  }
-});
+    let email = req.body.email;
+    let senha = req.body.senha;
 
+    let linha = await Loginadm(email, senha);
+    if (linha == undefined) {
+      throw new Error('Credenciais inválidas!');
+    }
+
+    resp.send(linha);
+    
+  } catch (err) {
+    resp.status(500).send({ erro: err.message});
+  }
+})
 export default endpoints;

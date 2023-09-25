@@ -1,20 +1,17 @@
 import conexao from "./connection.js";
 
-export async function Verificarlogin() {
-  try {
-    const comando = `
-        select nm_usuario as nome,
-        ds_email as email,
-        ds_senha as senha
-        from tb_admin;`;
+export async function Loginadm(email, senha) {
+  let sql = `
+  SELECT ds_email, ds_senha FROM tb_admin WHERE ds_email = ? and ds_senha = ?;
+  `
 
-    const [resposta] = await conexao.query(comando);
+  let respostas = await conexao.query(sql, [email,senha]);
+  
+  let linhas = respostas[0];
+  let linha = linhas[0];
+  console.log(linha)
 
-    return resposta[0];
-    
-  } catch (error) {
-    throw error;
-  }
+  return linha;
 }
 
 

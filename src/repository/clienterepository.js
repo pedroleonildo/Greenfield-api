@@ -29,7 +29,6 @@ export async function Loginc(email, senha) {
     `
   
     let respostas = await conexao.query(sql, [email,senha]);
-
     
     let linhas = respostas[0];
     let linha = linhas[0];
