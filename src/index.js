@@ -19,6 +19,4 @@ server.use(infoprodutoscontroller);
 server.use(admcontroller);
 server.use(produtoscontroller);
 
-
-server.listen(process.env.PORT, () => console.log(`A API subiu na porta ${process.env.PORT}`))
-
+server.listen(process.env.PORT, () => console.log(`API online na porta ${process.env.PORT}`))

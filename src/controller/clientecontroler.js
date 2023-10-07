@@ -1,11 +1,6 @@
 import { Router } from "express";
 
-
-
-
 import { Loginc, cadastro, inserirReclamacao,  } from "../repository/clienterepository.js";
-
-
 
 const endpoint = Router();
 

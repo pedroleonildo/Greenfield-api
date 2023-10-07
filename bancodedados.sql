@@ -1,5 +1,3 @@
-
-
 use greenfield;
 
 create table tb_cartao(
@@ -70,8 +68,6 @@ id_informacoes_produto int,
 foreign key (id_informacoes_produto) references tb_informacoes_produto (id_informacoes_produto)
 );
 
-
-
 create table tb_endereço(
     id_endereco int primary key auto_increment,
 	ds_logradouro varchar(100),
@@ -82,9 +78,6 @@ create table tb_endereço(
 	ds_cidade varchar(100),
 	ds_uf varchar(100)
 );
-
-
-
 
 create table tb_pedido(
 id_pedido int primary key auto_increment,
