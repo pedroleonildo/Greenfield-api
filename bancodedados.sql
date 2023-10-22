@@ -33,6 +33,7 @@ ds_reclamacao varchar(100)
 insert into tb_reclamacao (ds_reclamacao)
 					value(?);
 
+
 create table tb_admin(
 id_admin int primary key auto_increment,
 nm_usuario varchar(100),
@@ -40,17 +41,17 @@ ds_email varchar(100),
 ds_senha varchar(100)
 );
 
+insert into tb_admin(nm_usuario, ds_email, ds_senha)
+			values('Pedro', 'pedrinho@gmail.com', '1502');
+
 create table tb_categoria(
 id_categoria int primary key auto_increment,
 nm_categoria varchar(100) 
 );
 
-create table tb_informacoes_produto(
-id_informacoes_produto int primary key auto_increment,
-ds_material varchar(100),
-ds_dimensoes varchar(100),
-ds_extra varchar(1000) 
-);
+insert into tb_categoria(nm_categoria)
+					values('Sementes');
+
 
 create table tb_produto (
 id_produto int primary key auto_increment,
@@ -64,8 +65,9 @@ foreign key (id_categoria) references tb_categoria (id_categoria),
 vl_preco_promocao decimal,
 bt_promocao boolean,
 qtd_estoque int,
-id_informacoes_produto int,
-foreign key (id_informacoes_produto) references tb_informacoes_produto (id_informacoes_produto)
+ds_material varchar(100),
+ds_dimensoes varchar(100),
+ds_extra varchar(1000) 
 );
 
 create table tb_endereço(

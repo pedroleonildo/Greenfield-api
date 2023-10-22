@@ -1,10 +1,10 @@
 import conexao from "./connection.js";
 
 export async function Listartodos(){
-    let sql = `select *
-    from tb_produto
-    inner join tb_categoria on tb_categoria.id_categoria = tb_produto.id_categoria
-    inner join tb_informacoes_produto on tb_informacoes_produto.id_informacoes_produto = tb_produto.id_informacoes_produto;`
+    let sql = `SELECT *
+    FROM tb_produto
+    INNER JOIN tb_categoria
+    ON tb_categoria.id_categoria = tb_produto.id_categoria `
 
     let [resp] = await conexao.query(sql)
 
@@ -12,8 +12,8 @@ export async function Listartodos(){
 }
 
 export async function Cadastrarproduto(produtos){
-    let sql = `insert into tb_produto(nm_produto, ds_fabricante, vl_preco, nr_garantia, ds_produto, id_categoria, vl_preco_promocao, bt_promocao, qtd_estoque, id_informacoes_produto)
-    values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`
+    let sql = `insert into tb_produto(nm_produto, ds_fabricante, vl_preco, nr_garantia, ds_produto, id_categoria, vl_preco_promocao, bt_promocao, qtd_estoque, ds_material, ds_dimensoes, ds_extra)
+    values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`
 
     let [info] = await conexao.query(sql, [
         produtos.nome,
@@ -25,7 +25,9 @@ export async function Cadastrarproduto(produtos){
         produtos.preco_promo,
         produtos.promocao,
         produtos.estoque,
-        produtos.infoproduto
+        produtos.material,
+        produtos.dimensoes,
+        produtos.extra
     ])
 
     produtos.id = info.insertID
@@ -44,7 +46,9 @@ export async function Editarproduto(id, produtos){
     vl_preco_promocao  = ?,
     bt_promocao  = ?,
     qtd_estoque = ?,
-    id_informacoes_produto = ?
+    ds_material = ?,
+    ds_dimensoes = ?,
+    ds_extra = ?,
     where id_produto = ?`
 
     let [info] = await conexao.query(sql, [
@@ -57,8 +61,9 @@ export async function Editarproduto(id, produtos){
         produtos.preco_promo,
         produtos.promocao,
         produtos.estoque,
-        produtos.infoproduto,
-        id
+        produtos.dimensoes,
+        produtos.material,
+        produtos.extra
     ])
 
     let linha = info.affectedRows;
