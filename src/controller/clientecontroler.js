@@ -1,8 +1,16 @@
 import { Router } from "express";
 
-import { Loginc, cadastro, inserirReclamacao,  } from "../repository/clienterepository.js";
+import { Loginc, cadastro, inserirReclamacao, Consultar } from "../repository/clienterepository.js";
 
 const endpoint = Router();
+
+
+endpoint.get('/cliente', async (req, resp) => {
+    let r = await Consultar();
+
+    resp.send(r);
+})
+
 
 
 endpoint.post('/cliente/cadastro', async (req, resp) => {
@@ -25,6 +33,14 @@ endpoint.post('/cliente/cadastro', async (req, resp) => {
 
         if(!cliente.senha)
             throw new Error('⚠ senha obrigatorio')
+
+        let r1 = await Consultar(cliente.email)
+        if(r1.length > 0)
+        throw new Error('⚠ email já cadastrado')
+
+        let r2 = await Consultar(cliente.cpf)
+        if(r2.length > 0)
+        throw new Error('⚠ cpf já cadastrado')
 
         const dados = await cadastro(cliente)
         resp.send(dados)

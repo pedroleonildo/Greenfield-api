@@ -20,12 +20,18 @@ import conexao from './connection.js';
 
 }
 
+export async function Consultar(){
+    let comando = `select * from tb_cliente`;
 
+    let [dados] = await conexao.query(comando);
+
+    return dados;
+}
 
 
 export async function Loginc(email, senha) {
     let sql = `
-    SELECT ds_email, ds_senha FROM tb_cliente WHERE ds_email = ? and ds_senha = ?;
+    SELECT * FROM tb_cliente WHERE ds_email = ? and ds_senha = ?;
     `
   
     let respostas = await conexao.query(sql, [email,senha]);
