@@ -1,4 +1,6 @@
+create database greenfield;
 use greenfield;
+
 
 create table tb_cartao(
 id_cartao int primary key auto_increment,
@@ -11,6 +13,10 @@ dt_nascimento date
 );
 
 
+create table tb_reclamacao(
+id_reclamacao int primary key auto_increment,
+ds_reclamacao varchar(100)
+);
 
 create table tb_cliente(
 id_cliente int primary key auto_increment,
@@ -25,14 +31,6 @@ foreign key (id_reclamacao) references tb_reclamacao(id_reclamacao),
 foreign key (id_cartao) references tb_cartao (id_cartao)
 );
 
-create table tb_reclamacao(
-id_reclamacao int primary key auto_increment,
-ds_reclamacao varchar(100)
-);
-
-insert into tb_reclamacao (ds_reclamacao)
-					value(?);
-
 
 create table tb_admin(
 id_admin int primary key auto_increment,
@@ -42,7 +40,9 @@ ds_senha varchar(100)
 );
 
 insert into tb_admin(nm_usuario, ds_email, ds_senha)
-			values('Pedro', 'pedrinho@gmail.com', '1502');
+			values('Adrian James', 'adrian@gmail.com', '31-03-07');
+            
+select * from tb_admin;
 
 create table tb_categoria(
 id_categoria int primary key auto_increment,
@@ -67,8 +67,11 @@ bt_promocao boolean,
 qtd_estoque int,
 ds_material varchar(100),
 ds_dimensoes varchar(100),
-ds_extra varchar(1000) 
+ds_extra varchar(1000),
+bt_favorito boolean 
 );
+
+select * from tb_cliente;
 
 create table tb_endereço(
     id_endereco int primary key auto_increment,
@@ -109,4 +112,3 @@ ds_img varchar(1000),
 id_produto int,
 foreign key (id_produto) references tb_produto (id_produto)
 )
-
