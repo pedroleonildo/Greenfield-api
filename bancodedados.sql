@@ -1,7 +1,6 @@
 create database greenfield;
 use greenfield;
 
-
 create table tb_cartao(
 id_cartao int primary key auto_increment,
 nr_cartao int,
@@ -11,7 +10,6 @@ ds_cartao varchar(100),
 ds_cpf_titular_cartao varchar(100),
 dt_nascimento date
 );
-
 
 create table tb_reclamacao(
 id_reclamacao int primary key auto_increment,
@@ -31,7 +29,6 @@ foreign key (id_reclamacao) references tb_reclamacao(id_reclamacao),
 foreign key (id_cartao) references tb_cartao (id_cartao)
 );
 
-
 create table tb_admin(
 id_admin int primary key auto_increment,
 nm_usuario varchar(100),
@@ -40,8 +37,17 @@ ds_senha varchar(100)
 );
 
 insert into tb_admin(nm_usuario, ds_email, ds_senha)
-			values('Adrian James', 'adrian@gmail.com', '31-03-07');
+			values('Adrian James', 'adrian@greenfield.com', '31-03-07');
+
+insert into tb_admin(nm_usuario, ds_email, ds_senha)
+			values('Pedro Leonildo', 'pedroleonildo@greenfield.com', 'admin@greenfield');
             
+insert into tb_admin(nm_usuario, ds_email, ds_senha)
+			values('Pedro Henrique', 'pedrohenrique@greenfield.com', 'admin@greenfield');
+            
+insert into tb_admin(nm_usuario, ds_email, ds_senha)
+			values('Matheus Ferreira', 'matheusferreira@greenfield.com', 'admin@greenfield');            
+       
 select * from tb_admin;
 
 create table tb_categoria(
@@ -51,8 +57,6 @@ nm_categoria varchar(100)
 
 insert into tb_categoria(nm_categoria)
 					values('Sementes');
-
-
 create table tb_produto (
 id_produto int primary key auto_increment,
 nm_produto varchar(100),
@@ -111,4 +115,4 @@ id_img int primary key auto_increment,
 ds_img varchar(1000),
 id_produto int,
 foreign key (id_produto) references tb_produto (id_produto)
-)
+);
