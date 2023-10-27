@@ -14,10 +14,40 @@ import conexao from './connection.js';
 
     ])
 
+
     cliente.id = info.insertId
 
     return cliente;
 
+}
+
+
+export async function verificarDuplicadoEmail(email) {
+    const comando = 'SELECT * FROM tb_cliente WHERE ds_email = ?';
+    
+    
+    const [resposta] = await conexao.query(comando, [email]);
+    
+    
+    if (resposta.length != 0) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
+export async function verificarDuplicadocpf(cpf) {
+    const comando = 'SELECT * FROM tb_cliente WHERE ds_cpf = ?';
+    
+    
+    const [resposta] = await conexao.query(comando, [cpf]);
+    
+    
+    if (resposta.length != 0) {
+        return true;
+    } else {
+        return false;
+    }
 }
 
 export async function Consultar(){
