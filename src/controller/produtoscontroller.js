@@ -1,4 +1,4 @@
-import { Listartodos, Cadastrarproduto, Editarproduto, deletarproduto, Favorito } from "../repository/produtosrepository.js";
+import { Listartodos, Cadastrarproduto, Editarproduto, deletarproduto, Favorito, Listarnome } from "../repository/produtosrepository.js";
 import { Router } from "express";
 
 const endpoints = Router();
@@ -10,6 +10,17 @@ endpoints.get('/produtos', async (req, resp) => {
     }
     catch (err){
         resp.status(500).send({ erro: 'Ocorreu um erro!'})
+    };
+})
+
+endpoints.get('/produto/nome', async (req, resp) => {
+    try{
+        const {nome} = req.query
+        let dados = await Listarnome(nome)
+        resp.send(dados);
+    }
+    catch (err){
+        resp.status(500).send({ err: err.message})
     };
 })
 
