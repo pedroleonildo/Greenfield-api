@@ -70,6 +70,17 @@ export async function Editarproduto(id, produtos){
     return linha
 }
 
+export async function Favorito(id, produtos){
+    let sql = `update tb_produto set bt_favorito = ? where id_produto = ?`
+
+    let [info] = await conexao.query(sql, [
+        produtos.favorito
+    ])
+
+    let linha = info.affectedRows;
+    return linha
+}
+
 export async function deletarproduto(id){
     let sql = `delete from tb_produto where id_produto = ?`
 

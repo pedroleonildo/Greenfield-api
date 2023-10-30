@@ -1,4 +1,4 @@
-import { Listartodos, Cadastrarproduto, Editarproduto, deletarproduto } from "../repository/produtosrepository.js";
+import { Listartodos, Cadastrarproduto, Editarproduto, deletarproduto, Favorito } from "../repository/produtosrepository.js";
 import { Router } from "express";
 
 const endpoints = Router();
@@ -30,6 +30,19 @@ endpoints.put('/alterarproduto/:id', async (req, resp) => {
         let id = req.params.id;
         let produtos = req.body;
         let r = await Editarproduto(id, produtos);
+        resp.send()
+    }
+
+    catch(err){
+        resp.status(500).send({ erro: 'Ocorreu um erro!'})
+    }
+})
+
+endpoints.put('/favorito/:id', async (req, resp) => {
+    try{
+        let id = req.params.id;
+        let produtos = req.body;
+        let r = await Favorito(id, produtos);
         resp.send()
     }
 
