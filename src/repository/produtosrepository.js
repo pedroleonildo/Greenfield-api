@@ -23,6 +23,18 @@ export async function Listarnome(nome){
     return resp
 }
 
+export async function Listarporcategoria(id){
+    let sql = `select * 
+    from tb_produto
+    inner join tb_categoria
+    on tb_produto.id_categoria = tb_categoria.id_categoria
+    where tb_produto.id_categoria = ?`
+
+    const [resp] = await conexao.query(sql, [id])
+
+    return resp
+}
+
 export async function Cadastrarproduto(produtos){
     let sql = `insert into tb_produto(nm_produto, ds_fabricante, vl_preco, nr_garantia, ds_produto, id_categoria, vl_preco_promocao, bt_promocao, qtd_estoque, ds_material, ds_dimensoes, ds_extra)
     values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`
