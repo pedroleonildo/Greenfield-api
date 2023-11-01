@@ -1,4 +1,3 @@
-create database greenfield;
 use greenfield;
 
 create table tb_cartao(
@@ -35,28 +34,14 @@ nm_usuario varchar(100),
 ds_email varchar(100),
 ds_senha varchar(100)
 );
-
-insert into tb_admin(nm_usuario, ds_email, ds_senha)
-			values('Adrian James', 'adrian@greenfield.com', '31-03-07');
-
-insert into tb_admin(nm_usuario, ds_email, ds_senha)
-			values('Pedro Leonildo', 'pedroleonildo@greenfield.com', 'admin@greenfield');
             
-insert into tb_admin(nm_usuario, ds_email, ds_senha)
-			values('Pedro Henrique', 'pedrohenrique@greenfield.com', 'admin@greenfield');
-            
-insert into tb_admin(nm_usuario, ds_email, ds_senha)
-			values('Matheus Ferreira', 'matheusferreira@greenfield.com', 'admin@greenfield');            
-       
-select * from tb_admin;
-
 create table tb_categoria(
 id_categoria int primary key auto_increment,
 nm_categoria varchar(100) 
 );
 
 insert into tb_categoria(nm_categoria)
-					values('Sementes');
+					values('');
 create table tb_produto (
 id_produto int primary key auto_increment,
 nm_produto varchar(100),
