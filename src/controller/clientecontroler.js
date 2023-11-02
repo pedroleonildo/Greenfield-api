@@ -1,6 +1,6 @@
 import { Router } from "express";
 
-import { Loginc, cadastro, inserirReclamacao, Consultar, verificarDuplicadoEmail, verificarDuplicadocpf } from "../repository/clienterepository.js";
+import { Loginc, cadastro, inserirReclamacao, Consultar, verificarDuplicadoEmail, verificarDuplicadocpf, MeuCadastro, AlterarInfo } from "../repository/clienterepository.js";
 
 const endpoint = Router();
 
@@ -91,8 +91,40 @@ endpoint.post('/cliente/cadastro', async (req, resp) => {
         
     })
 
+    endpoint.get('/meucadastro/id', async (req, resp) => {
+        try{
+            const {id} = req.query
+            let dados = await MeuCadastro(id)
+            resp.send(dados);
+        }
+        catch (err){
+            resp.status(500).send({ err: err.message})
+        };
+
+        
+    } )
+
+    endpoint.put('/alterarinfo/:id', async (req, resp) => {
+        try{
+            let id = req.params.id;
+            let cliente = req.body;
+            let r = await AlterarInfo(id, cliente);
+            resp.send()
+        }
+
+        catch (err){
+            resp.status(500).send({ err: err.message})
+        };
+
+    })
+
+
+
   
   export default endpoint;
+
+
+
 
 
 

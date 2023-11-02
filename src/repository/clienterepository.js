@@ -87,3 +87,37 @@ export async function inserirReclamacao(reclamacao){
     return reclamacao;
 };
 
+export async function MeuCadastro(id) {
+    let comando = `select * from tb_cliente where id_cliente = ?`
+
+    const [dados] = await conexao.query(comando, [id])
+
+    return dados;
+}
+
+
+export async function AlterarInfo(id, cliente){
+    let comando = `update tb_cliente 
+    set ds_telefone = ?,
+    ds_senha = ?
+    where id_cliente = ?`
+
+    let [info] = await conexao.query(comando, [
+        cliente.telefone,
+        cliente.senha,
+        id
+
+    ])
+
+    let linha = info.affectedRows;
+    return linha;
+
+}
+
+
+
+
+
+
+
+

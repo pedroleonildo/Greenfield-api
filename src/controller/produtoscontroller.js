@@ -24,7 +24,7 @@ endpoints.get('/produto/nome', async (req, resp) => {
     };
 })
 
-endpoints.get('/produto/:id', async (req, resp) => {
+endpoints.get('/produto/id', async (req, resp) => {
     try{
         const {id} = req.query
         let dados = await Listarporcategoria(id)
