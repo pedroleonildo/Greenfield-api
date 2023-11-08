@@ -32,7 +32,7 @@ export async function Listarporid(id){
 
     const [resp] = await conexao.query(sql, [id])
 
-    return resp
+    return resp[0]
 }
 
 export async function Listarporcategoria(id){
