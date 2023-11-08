@@ -1,4 +1,4 @@
-import { Listartodos, Cadastrarproduto, Editarproduto, deletarproduto, Favorito, Listarnome, Listarporcategoria } from "../repository/produtosrepository.js";
+import { Listartodos, Cadastrarproduto, Editarproduto, deletarproduto, Favorito, Listarnome, Listarporcategoria, Listarporid } from "../repository/produtosrepository.js";
 import { Router } from "express";
 
 const endpoints = Router();
@@ -24,10 +24,21 @@ endpoints.get('/produto/nome', async (req, resp) => {
     };
 })
 
-endpoints.get('/produto/:id', async (req, resp) => {
+endpoints.get('/categoria/:id', async (req, resp) => {
     try{
         const {id} = req.params
         let dados = await Listarporcategoria(id)
+        resp.send(dados);
+    }
+    catch (err){
+        resp.status(500).send({ err: err.message})
+    };
+})
+
+endpoints.get('/produto/:id', async (req, resp) => {
+    try{
+        const {id} = req.params
+        let dados = await Listarporid(id)
         resp.send(dados);
     }
     catch (err){

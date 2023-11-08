@@ -23,6 +23,18 @@ export async function Listarnome(nome){
     return resp
 }
 
+export async function Listarporid(id){
+    let sql = `select * 
+    from tb_produto
+    inner join tb_categoria
+    on tb_produto.id_categoria = tb_categoria.id_categoria
+    where id_produto = ?`
+
+    const [resp] = await conexao.query(sql, [id])
+
+    return resp
+}
+
 export async function Listarporcategoria(id){
     let sql = `select * 
     from tb_produto
