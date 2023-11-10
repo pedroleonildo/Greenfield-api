@@ -11,6 +11,15 @@ export async function Listartodos(){
     return resp
 }
 
+export async function Listarfavo(id){
+    let sql = `select * from tb_produto 
+    where bt_favorito = true and id_categoria = ?`
+
+    let [resp] = await conexao.query(sql, [id])
+
+    return resp
+}
+
 export async function Listarnome(nome){
     let sql = `select * 
     from tb_produto
@@ -109,9 +118,7 @@ export async function Editarproduto(id, produtos){
 export async function Favorito(id, produtos){
     let sql = `update tb_produto set bt_favorito = ? where id_produto = ?`
 
-    let [info] = await conexao.query(sql, [
-        produtos.favorito
-    ])
+    let [info] = await conexao.query(sql, [produtos.favorito, id])
 
     let linha = info.affectedRows;
     return linha

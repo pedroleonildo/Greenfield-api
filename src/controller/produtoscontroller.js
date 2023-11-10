@@ -1,4 +1,4 @@
-import { Listartodos, Cadastrarproduto, Editarproduto, deletarproduto, Favorito, Listarnome, Listarporcategoria, Listarporid } from "../repository/produtosrepository.js";
+import { Listartodos, Cadastrarproduto, Editarproduto, deletarproduto, Favorito, Listarnome, Listarporcategoria, Listarporid, Listarfavo } from "../repository/produtosrepository.js";
 import { Router } from "express";
 
 const endpoints = Router();
@@ -17,6 +17,17 @@ endpoints.get('/produto/nome', async (req, resp) => {
     try{
         const {nome} = req.query
         let dados = await Listarnome(nome)
+        resp.send(dados);
+    }
+    catch (err){
+        resp.status(500).send({ err: err.message})
+    };
+})
+
+endpoints.get('/favoritado/id', async (req, resp) => {
+    try{
+        const {id} = req.query
+        let dados = await Listarfavo(id)
         resp.send(dados);
     }
     catch (err){
@@ -80,6 +91,7 @@ endpoints.put('/favorito/:id', async (req, resp) => {
     }
 
     catch(err){
+        console.log(err)
         resp.status(500).send({ erro: 'Ocorreu um erro!'})
     }
 })
