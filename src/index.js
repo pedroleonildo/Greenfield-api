@@ -18,4 +18,6 @@ server.use(categoriacontroller);
 server.use(admcontroller);
 server.use(produtoscontroller);
 
+server.use('/storage/fotosProdutos', express.static('storage/fotosProdutos'))
+
 server.listen(process.env.PORT, () => console.log(`API online na porta ${process.env.PORT}`))

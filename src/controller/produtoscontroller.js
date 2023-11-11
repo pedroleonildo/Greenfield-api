@@ -1,5 +1,9 @@
-import { Listartodos, Cadastrarproduto, Editarproduto, deletarproduto, Favorito, Listarnome, Listarporcategoria, Listarporid, Listarfavo } from "../repository/produtosrepository.js";
+import { Listartodos, Cadastrarproduto, Editarproduto, deletarproduto, Favorito, Listarnome, Listarporcategoria, Listarporid, Listarfavo, alterarImagem } from "../repository/produtosrepository.js";
 import { Router } from "express";
+
+import multer from 'multer';
+
+const upload = multer({ dest: 'storage/fotosProdutos' });
 
 const endpoints = Router();
 
@@ -109,3 +113,27 @@ endpoints.delete('/deletarproduto/:id', async (req, resp) => {
 })
 
 export default endpoints;
+
+endpoints.put('/produto/:id/imagem', upload.single('produtosIma'), async (req, resp) => {
+    try {
+
+        if (!req.file) {
+            throw new Error('Imagem do produto Obrigatória')
+        }
+
+        const { id } = req.params;
+        const imagem = req.file.path;
+
+        const resposta = await alterarImagem(imagem, id)
+        if (resposta != 1) {
+            throw new Error('imagem não pode ser salva')
+        }
+
+        resp.status(204).send()
+        
+    } catch (err) {
+        resp.status(400).send({
+            erro: err.message
+        })
+    }
+});

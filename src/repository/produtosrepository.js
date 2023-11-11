@@ -132,3 +132,32 @@ export async function deletarproduto(id){
     let linha = info.affectedRows;
     return linha;
 }
+
+export async function EnviarImagem(id, imagem) {
+    const formData = new FormData();
+    formData.append('produtosIma', imagem)
+    const resposta = await api.put(`/produto/${id}/imagem`, formData, {
+        headers: {
+            "Content-Type": "multipart/form-data"
+        },
+    })
+
+    return resposta.status; 
+}
+
+export function BuscarImagem(imagem) {
+    console.log(`${api.getUri()}/${imagem}`);
+
+    return `${api.getUri()}/${imagem}`
+}
+
+export async function alterarImagem(imagem, id) {
+    const comando = `
+        update tb_produto
+        set ds_img1 = ?
+        where id_produto = ?
+    `
+
+    const [resp] = await conexao.query(comando, [imagem, id]);
+    return resp.affectedRows;
+}

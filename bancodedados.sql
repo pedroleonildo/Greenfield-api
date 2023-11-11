@@ -101,3 +101,5 @@ ds_img varchar(1000),
 id_produto int,
 foreign key (id_produto) references tb_produto (id_produto)
 );
+
+
