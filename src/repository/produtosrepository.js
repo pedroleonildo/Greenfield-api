@@ -57,8 +57,8 @@ export async function Listarporcategoria(id){
 }
 
 export async function Cadastrarproduto(produtos){
-    let sql = `insert into tb_produto(nm_produto, ds_fabricante, vl_preco, nr_garantia, ds_produto, id_categoria, vl_preco_promocao, bt_promocao, qtd_estoque, ds_material, ds_dimensoes, ds_extra)
-    values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`
+    let sql = `insert into tb_produto(nm_produto, ds_fabricante, vl_preco, nr_garantia, ds_produto, id_categoria, vl_preco_promocao, bt_promocao, qtd_estoque, ds_material, ds_dimensoes, ds_extra, ds_img1, ds_img2, ds_img3)
+    values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`
 
     let [info] = await conexao.query(sql, [
         produtos.nome,
@@ -72,7 +72,10 @@ export async function Cadastrarproduto(produtos){
         produtos.estoque,
         produtos.material,
         produtos.dimensoes,
-        produtos.extra
+        produtos.extra,
+        produtos.imagem1,
+        produtos.imagem2,
+        produtos.imagem3
     ])
 
     produtos.id = info.insertID
@@ -93,7 +96,7 @@ export async function Editarproduto(id, produtos){
     qtd_estoque = ?,
     ds_material = ?,
     ds_dimensoes = ?,
-    ds_extra = ?,
+    ds_extra = ?
     where id_produto = ?`
 
     let [info] = await conexao.query(sql, [

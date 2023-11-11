@@ -57,7 +57,10 @@ qtd_estoque int,
 ds_material varchar(100),
 ds_dimensoes varchar(100),
 ds_extra varchar(1000),
-bt_favorito boolean 
+bt_favorito boolean,
+ds_img1,
+ds_img2,
+ds_img3
 );
 
 select * from tb_cliente;
